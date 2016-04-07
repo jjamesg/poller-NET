@@ -1,0 +1,38 @@
+@model IEnumerable<poller.Models.Poll>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Question)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User)
+        </th>
+        <th></th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Question)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User)
+        </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.PollID">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.PollID">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.PollID">Delete</a>
+        </td>
+    </tr>
+}
+</table>

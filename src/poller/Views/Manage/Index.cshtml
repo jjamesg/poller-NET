@@ -1,0 +1,51 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Manage your account";
+}
+
+<h2>@ViewData["Title"].</h2>
+<p class="text-success">@ViewData["StatusMessage"]</p>
+
+<div>
+    <h4>Manage your polls</h4>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Votes</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ManagedPoll poll in Model.Polls)
+            {
+                    <tr>
+                        <td><a href="/polls/results/@poll.PollID">@poll.Question</a></td>
+                        <td>@poll.Votes</td>
+                        <td>
+                            <a asp-action="delete/@poll.PollID">delete</a>
+                        </td>
+
+                    </tr>
+
+            }
+        </tbody>
+    </table>
+
+    <h4>Change your account settings</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Password:</dt>
+        <dd>
+            @if (Model.HasPassword)
+            {
+                <text>[&nbsp;&nbsp;<a asp-controller="Manage" asp-action="ChangePassword">Change</a>&nbsp;&nbsp;]</text>
+            }
+            else
+            {
+                <text>[&nbsp;&nbsp;<a asp-controller="Manage" asp-action="SetPassword">Create</a>&nbsp;&nbsp;]</text>
+            }
+        </dd>
+    </dl>
+</div>

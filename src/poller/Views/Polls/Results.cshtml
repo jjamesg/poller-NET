@@ -1,0 +1,23 @@
+@model poller.ViewModels.PollAndAnswers
+
+@{
+    ViewData["Title"] = "Results";
+}
+
+<h2>Results</h2>
+
+<div>
+    <hr />
+    <h1>@Model.poll.Question</h1>
+    @foreach (Answer answer in Model.answers)
+    { 
+    var percent = (decimal)answer.Votes / (decimal)Model.TotalVotes * 100; 
+        
+        <h3>@answer.AnswerString: @Math.Round(percent, 0)%</h3>
+    }
+    <h3>Total votes: @Model.TotalVotes</h3>
+</div>
+<div style="margin-top: 30px">
+    <a asp-action="Create">Create a new poll</a>
+</div>
+

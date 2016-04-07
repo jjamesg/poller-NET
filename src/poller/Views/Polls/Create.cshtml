@@ -1,0 +1,41 @@
+@model poller.ViewModels.PollAndAnswers
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    input{
+        max-width: 100%;
+    }
+</style>
+
+
+<h2>Create a poll</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal" style="max-width: 300px">
+        <hr />
+        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+        <h4>Question</h4>
+        <input asp-for="poll.Question" class="form-control" />
+    
+    <h4>Answers</h4>
+
+    <div class="answersIn"></div>
+
+    <button class="btn btn-success add" type="button">+</button>
+
+    <input type="submit" value="Create" class="btn btn-primary" style="float: right" />
+    </div>
+</form>
+
+
+
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/adjustAnswers.js"></script>
+}
